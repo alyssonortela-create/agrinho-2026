@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agro Forte, Futuro Sustentável</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-overlay"></div>
+    <div class="leaf leaf1">🌿</div>
+    <div class="leaf leaf2">🍃</div>
+    <div class="leaf leaf3">🌱</div>
+    <div class="header-content">
+      <div class="logo-icon">🌾</div>
+      <h1 class="main-title">AGRO FORTE,<br><span>FUTURO SUSTENTÁVEL</span></h1>
+      <p class="slogan">equilíbrio entre produção e meio ambiente</p>
+      <div class="header-badges">
+        <span class="badge"><i class="fas fa-leaf"></i> Natureza</span>
+        <span class="badge"><i class="fas fa-tint"></i> Água</span>
+        <span class="badge"><i class="fas fa-seedling"></i> Solo</span>
+        <span class="badge"><i class="fas fa-sun"></i> Energia</span>
+      </div>
+    </div>
+    <div class="header-wave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#f5f0e8"/></svg>
+    </div>
+  </header>
+
+  <!-- MENU CENTRAL -->
+  <section class="menu-section" id="menu">
+    <div class="section-label">EXPLORE OS TEMAS</div>
+    <h2 class="section-title">O que você quer descobrir?</h2>
+    <div class="menu-grid">
+
+      <div class="menu-card game-card" onclick="openGame()">
+        <div class="card-glow"></div>
+        <div class="card-icon">🎮</div>
+        <div class="card-badge-top">INTERATIVO</div>
+        <h3>Hora do<br>Mini Game!</h3>
+        <p>Faça escolhas e veja as consequências para o meio ambiente</p>
+        <div class="card-arrow"><i class="fas fa-play-circle"></i> Jogar agora</div>
+      </div>
+
+      <div class="menu-card" onclick="scrollTo('#agro-tech')">
+        <div class="card-icon">🚜</div>
+        <h3>Agro &<br>Tecnologia</h3>
+        <p>Como a inovação transforma o campo do futuro</p>
+        <div class="card-arrow"><i class="fas fa-arrow-right"></i> Ver mais</div>
+      </div>
+
+      <div class="menu-card" onclick="scrollTo('#meio-ambiente')">
+        <div class="card-icon">🌍</div>
+        <h3>Meio Ambiente<br>& Produção</h3>
+        <p>Por que produzir mais gastando menos recursos</p>
+        <div class="card-arrow"><i class="fas fa-arrow-right"></i> Ver mais</div>
+      </div>
+
+      <div class="menu-card" onclick="scrollTo('#beneficios')">
+        <div class="card-icon">🤝</div>
+        <h3>Agro + Natureza<br>Juntos!</h3>
+        <p>Os benefícios reais de um campo sustentável</p>
+        <div class="card-arrow"><i class="fas fa-arrow-right"></i> Ver mais</div>
+      </div>
+
+      <div class="menu-card" onclick="scrollTo('#futuro')">
+        <div class="card-icon">🌅</div>
+        <h3>O Futuro<br>do Campo</h3>
+        <p>Visão de um agronegócio verde e próspero</p>
+        <div class="card-arrow"><i class="fas fa-arrow-right"></i> Ver mais</div>
+      </div>
+
+      <div class="menu-card" onclick="scrollTo('#acoes')">
+        <div class="card-icon">✅</div>
+        <h3>O que Posso<br>Fazer?</h3>
+        <p>Atitudes concretas para um planeta melhor</p>
+        <div class="card-arrow"><i class="fas fa-arrow-right"></i> Ver mais</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MODAL DO JOGO -->
+  <div class="modal-overlay" id="gameModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeGame()"><i class="fas fa-times"></i></button>
+
+      <!-- TELA: INTRO -->
+      <div class="game-screen" id="screen-intro">
+        <div class="game-title-area">
+          <div class="game-emoji">🎮</div>
+          <h2>Mini Game:<br>Fazenda do Futuro</h2>
+          <p>Você é o dono(a) de uma fazenda e vai enfrentar 3 situações reais. Suas escolhas moldam o futuro do planeta!</p>
+        </div>
+        <div class="score-display">
+          <span>🌱 Pontos Verdes: <strong id="greenScore">0</strong></span>
+          <span>🏭 Pontos Cinzas: <strong id="grayScore">0</strong></span>
+        </div>
+        <button class="btn-game" onclick="startGame()"><i class="fas fa-play"></i> Começar Aventura!</button>
+      </div>
+
+      <!-- TELA: PERGUNTA -->
+      <div class="game-screen hidden" id="screen-question">
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="question-number" id="questionNum">Situação 1 de 3</div>
+        <div class="question-image" id="questionEmoji">🌾</div>
+        <h3 class="question-text" id="questionText">Pergunta aqui</h3>
+        <div class="choices" id="choicesArea"></div>
+      </div>
+
+      <!-- TELA: CONSEQUÊNCIA -->
+      <div class="game-screen hidden" id="screen-result">
+        <div class="result-emoji" id="resultEmoji">🌿</div>
+        <h3 id="resultTitle">Resultado</h3>
+        <p id="resultText">Explicação aqui</p>
+        <div class="result-impact" id="resultImpact"></div>
+        <button class="btn-game" onclick="nextQuestion()">Próxima situação <i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <!-- TELA: FINAL -->
+      <div class="game-screen hidden" id="screen-end">
+        <div class="end-emoji" id="endEmoji">🌾</div>
+        <h2 id="endTitle">Fim da Jornada!</h2>
+        <p id="endText">Veja seu resultado</p>
+        <div class="final-score">
+          <div class="score-item green"><span id="finalGreen">0</span><small>🌱 Verdes</small></div>
+          <div class="score-item gray"><span id="finalGray">0</span><small>🏭 Cinzas</small></div>
+        </div>
+        <div class="end-message" id="endMessage"></div>
+        <button class="btn-game" onclick="restartGame()"><i class="fas fa-redo"></i> Jogar de Novo</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEÇÃO: AGRO E TECNOLOGIA -->
+  <section class="content-section alt-bg" id="agro-tech">
+    <div class="container">
+      <div class="section-label">INOVAÇÃO NO CAMPO</div>
+      <h2 class="section-title">Agro & Tecnologia: o campo do futuro</h2>
+      <div class="content-grid">
+        <div class="content-text">
+          <p>O agronegócio brasileiro é um dos mais avançados do mundo. Com o uso de <strong>drones, inteligência artificial, sensores de solo e satélites</strong>, o produtor rural hoje consegue plantar mais, gastar menos água e preservar mais áreas verdes ao mesmo tempo.</p>
+          <p>A chamada <strong>Agricultura de Precisão</strong> usa dados em tempo real para saber exatamente onde plantar, irrigar e colher — reduzindo desperdício e aumentando a produtividade por hectare.</p>
+          <div class="tech-list">
+            <div class="tech-item"><i class="fas fa-helicopter"></i><span>Drones monitorando plantações</span></div>
+            <div class="tech-item"><i class="fas fa-satellite"></i><span>Satélites mapeando o solo</span></div>
+            <div class="tech-item"><i class="fas fa-brain"></i><span>IA prevendo pragas e clima</span></div>
+            <div class="tech-item"><i class="fas fa-tint"></i><span>Irrigação inteligente por sensor</span></div>
+          </div>
+        </div>
+        <div class="content-image">
+          <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&q=80" alt="Drone em plantação" loading="lazy"/>
+          <div class="img-caption">Drone monitorando lavoura com tecnologia de precisão</div>
+          <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=600&q=80" alt="Tecnologia agrícola" loading="lazy" style="margin-top:1rem"/>
+          <div class="img-caption">Sistemas automatizados de irrigação sustentável</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO: MEIO AMBIENTE -->
+  <section class="content-section" id="meio-ambiente">
+    <div class="container">
+      <div class="section-label">NATUREZA & PRODUÇÃO</div>
+      <h2 class="section-title">Por que o Meio Ambiente é um aliado do Agro?</h2>
+      <div class="content-grid reverse">
+        <div class="content-image">
+          <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Floresta e campo" loading="lazy"/>
+          <div class="img-caption">Área de preservação ao lado de lavoura produtiva</div>
+          <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=600&q=80" alt="Rio em área rural" loading="lazy" style="margin-top:1rem"/>
+          <div class="img-caption">Rios limpos garantem irrigação natural para toda a região</div>
+        </div>
+        <div class="content-text">
+          <p>Floresta preservada <strong>regula o clima</strong>, mantém os rios cheios e o solo fértil. Um produtor rural que cuida da mata em volta de sua fazenda está, na prática, garantindo água para irrigar, chuva na época certa e proteção contra erosão.</p>
+          <p>Estudos mostram que fazendas com <strong>Reserva Legal bem mantida</strong> produzem mais a longo prazo, pois a biodiversidade ao redor controla pragas naturalmente, reduzindo o uso de agrotóxicos.</p>
+          <div class="highlight-box">
+            <i class="fas fa-quote-left"></i>
+            <p>"Quem cuida da floresta cuida da própria lavoura. A natureza é o maior seguro do agricultor."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO: BENEFÍCIOS -->
+  <section class="content-section alt-bg" id="beneficios">
+    <div class="container">
+      <div class="section-label">VANTAGENS REAIS</div>
+      <h2 class="section-title">Agro + Natureza = Ganho para todos</h2>
+      <div class="benefits-grid">
+
+        <div class="benefit-card">
+          <div class="benefit-icon" style="background:#e8f5e9">🌧️</div>
+          <h4>Chuvas Regulares</h4>
+          <p>Florestas preservadas garantem ciclos de chuva equilibrados, essenciais para toda agricultura.</p>
+          <img src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?w=400&q=70" alt="Chuva no campo" loading="lazy"/>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon" style="background:#e3f2fd">💧</div>
+          <h4>Água Limpa</h4>
+          <p>Matas ciliares protegem rios e nascentes, garantindo água de qualidade para irrigação e consumo.</p>
+          <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400&q=70" alt="Rio limpo" loading="lazy"/>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon" style="background:#fff3e0">🌻</div>
+          <h4>Solo Fértil</h4>
+          <p>Práticas sustentáveis como plantio direto e compostagem mantêm o solo rico por gerações.</p>
+          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=70" alt="Solo fértil" loading="lazy"/>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon" style="background:#f3e5f5">🐝</div>
+          <h4>Polinizadores</h4>
+          <p>Abelhas e insetos saudáveis aumentam em até 30% a produtividade de diversas culturas.</p>
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=70" alt="Abelha em flor" loading="lazy"/>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon" style="background:#e8f5e9">☀️</div>
+          <h4>Energia Solar</h4>
+          <p>Fazendas com painéis solares reduzem custos e tornam a propriedade energeticamente autônoma.</p>
+          <img src="https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=400&q=70" alt="Energia solar no campo" loading="lazy"/>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon" style="background:#e3f2fd">🌍</div>
+          <h4>Mercado Verde</h4>
+          <p>Produtos sustentáveis são cada vez mais valorizados no mercado nacional e internacional.</p>
+          <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&q=70" alt="Mercado sustentável" loading="lazy"/>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO: FUTURO -->
+  <section class="content-section" id="futuro">
+    <div class="container">
+      <div class="section-label">VISÃO DE AMANHÃ</div>
+      <h2 class="section-title">O Futuro do Campo: verde e próspero</h2>
+      <div class="future-timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot">🌱</div>
+          <div class="timeline-content">
+            <h4>Agrofloresta</h4>
+            <p>Integração de árvores nativas com plantações — mais produtividade e biodiversidade no mesmo espaço.</p>
+            <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=500&q=70" alt="Agrofloresta" loading="lazy"/>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot">🤖</div>
+          <div class="timeline-content">
+            <h4>Robótica Agrícola</h4>
+            <p>Robôs colhem, plantam e monitoram com precisão milimétrica, reduzindo impacto no solo.</p>
+            <img src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=500&q=70" alt="Tecnologia agrícola" loading="lazy"/>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot">💚</div>
+          <div class="timeline-content">
+            <h4>Carbono Zero</h4>
+            <p>Fazendas neutras em carbono ganham créditos que podem ser vendidos no mercado global.</p>
+            <img src="https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=500&q=70" alt="Carbono zero" loading="lazy"/>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO: AÇÕES -->
+  <section class="content-section alt-bg" id="acoes">
+    <div class="container">
+      <div class="section-label">ATITUDE CONTA</div>
+      <h2 class="section-title">O que EU posso fazer?</h2>
+      <div class="actions-grid">
+        <div class="action-item">
+          <span class="action-num">01</span>
+          <div>
+            <h4>Consuma produtos certificados</h4>
+            <p>Prefira alimentos com selos de origem sustentável e produção responsável.</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <span class="action-num">02</span>
+          <div>
+            <h4>Reduza o desperdício de alimentos</h4>
+            <p>No Brasil, desperdiçamos 46 milhões de toneladas de comida por ano.</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <span class="action-num">03</span>
+          <div>
+            <h4>Valorize o produtor local</h4>
+            <p>Feiras livres e mercados locais reduzem o transporte e fortalecem o campo.</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <span class="action-num">04</span>
+          <div>
+            <h4>Aprenda sobre o campo</h4>
+            <p>Conhecimento é o primeiro passo para fazer escolhas conscientes no dia a dia.</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <span class="action-num">05</span>
+          <div>
+            <h4>Plante uma árvore</h4>
+            <p>Cada árvore plantada captura CO₂ e contribui para o ciclo das chuvas.</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <span class="action-num">06</span>
+          <div>
+            <h4>Compartilhe conhecimento</h4>
+            <p>Fale sobre sustentabilidade com amigos, família e redes sociais.</p>
+          </div>
+        </div>
+      </div>
+      <div class="cta-area">
+        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=900&q=80" alt="Campo sustentável" loading="lazy"/>
+        <div class="cta-overlay">
+          <h3>🌾 Juntos pelo campo sustentável!</h3>
+          <p>O futuro do agro brasileiro está nas mãos de quem produz E de quem consome. Seja parte dessa mudança.</p>
+          <button class="btn-cta" onclick="scrollTo('#menu')">↑ Voltar ao início</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">🌾 AGRO FORTE</div>
+      <p>Equilíbrio entre produção e meio ambiente</p>
+      <div class="footer-icons">🌿 💧 🌱 ☀️ 🤝</div>
+      <p class="footer-small">Educação ambiental para um Brasil mais verde e produtivo</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
