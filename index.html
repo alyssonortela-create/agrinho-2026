@@ -1,356 +1,617 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Agro Forte, Futuro Sustentável</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Agro Forte, Futuro Sustentável</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root {
+  --verde: #2d6a4f; --verde-claro: #52b788; --verde-bg: #d8f3dc;
+  --azul: #1a6b8a; --azul-claro: #48cae4; --azul-bg: #caf0f8;
+  --amarelo: #e9c46a; --amarelo-forte: #f4a261; --amarelo-bg: #fff3cd;
+  --fundo: #f5f0e8; --texto: #2c2c2c;
+  --sombra: 0 8px 32px rgba(0,0,0,0.12); --radius: 20px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Nunito',sans-serif; background:var(--fundo); color:var(--texto); overflow-x:hidden; }
+
+/* ── HEADER ── */
+.header { position:relative; min-height:420px; background:linear-gradient(135deg,#1b4332 0%,#2d6a4f 40%,#1a6b8a 100%); display:flex; align-items:center; justify-content:center; overflow:hidden; padding:60px 20px 100px; }
+.header-overlay { position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1600&q=60') center/cover no-repeat; opacity:.18; }
+.leaf { position:absolute; font-size:3rem; animation:floatLeaf 6s ease-in-out infinite; opacity:.4; }
+.leaf1{top:15%;left:5%;animation-delay:0s;} .leaf2{top:60%;right:8%;animation-delay:2s;font-size:2rem;} .leaf3{top:30%;right:15%;animation-delay:4s;font-size:1.5rem;}
+@keyframes floatLeaf{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-20px) rotate(10deg);}}
+.header-content { position:relative; text-align:center; z-index:2; }
+.logo-icon { font-size:4rem; margin-bottom:12px; animation:pulse 2s ease-in-out infinite; }
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+.main-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:900; color:#fff; text-shadow:0 4px 20px rgba(0,0,0,.5); line-height:1.15; letter-spacing:1px; }
+.main-title span { color:var(--amarelo); }
+.slogan { margin-top:10px; font-size:clamp(.9rem,2vw,1.1rem); color:#b7e4c7; font-weight:600; letter-spacing:2px; text-transform:uppercase; }
+.header-badges { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:20px; }
+.badge { background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); color:#fff; padding:6px 14px; border-radius:50px; font-size:.85rem; font-weight:700; backdrop-filter:blur(6px); }
+.badge i { margin-right:5px; }
+.header-wave { position:absolute; bottom:0; left:0; right:0; }
+.header-wave svg { display:block; width:100%; height:80px; }
+
+/* ── MENU ── */
+.menu-section { padding:60px 20px; max-width:1100px; margin:0 auto; }
+.section-label { font-size:.75rem; font-weight:800; letter-spacing:4px; text-transform:uppercase; color:var(--verde); margin-bottom:8px; }
+.section-title { font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3.5vw,2.4rem); color:var(--texto); margin-bottom:36px; }
+.menu-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; }
+.menu-card { position:relative; background:#fff; border-radius:var(--radius); padding:30px 26px 24px; cursor:pointer; box-shadow:var(--sombra); transition:all .3s ease; overflow:hidden; border:2px solid transparent; }
+.menu-card:hover { transform:translateY(-6px); border-color:var(--verde-claro); box-shadow:0 16px 48px rgba(45,106,79,.18); }
+.card-glow { position:absolute; inset:0; background:linear-gradient(135deg,#d8f3dc,#caf0f8); opacity:0; transition:opacity .3s; border-radius:var(--radius); }
+.menu-card:hover .card-glow { opacity:.6; }
+.card-icon { font-size:3rem; margin-bottom:14px; position:relative; }
+.card-badge-top { position:absolute; top:16px; right:16px; background:var(--amarelo-forte); color:#fff; font-size:.65rem; font-weight:800; letter-spacing:2px; padding:4px 10px; border-radius:50px; }
+.menu-card h3 { font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--texto); margin-bottom:8px; position:relative; }
+.menu-card p { font-size:.88rem; color:#666; line-height:1.5; position:relative; }
+.card-arrow { margin-top:18px; font-size:.82rem; font-weight:700; color:var(--verde); position:relative; }
+.card-arrow i { margin-right:4px; }
+.game-card { background:linear-gradient(135deg,#1b4332,#2d6a4f); border-color:var(--verde-claro)!important; }
+.game-card h3,.game-card p { color:#fff!important; }
+.game-card .card-arrow { color:var(--amarelo)!important; }
+
+/* ── MODAL GENÉRICO ── */
+.modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.75); backdrop-filter:blur(8px); z-index:1000; align-items:center; justify-content:center; padding:20px; }
+.modal-overlay.active { display:flex; }
+.modal-box { background:#fff; border-radius:28px; padding:40px 36px; max-width:700px; width:100%; position:relative; box-shadow:0 32px 80px rgba(0,0,0,.35); max-height:90vh; overflow-y:auto; animation:slideUp .4s ease; }
+@keyframes slideUp{from{transform:translateY(40px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.modal-close { position:absolute; top:18px; right:20px; background:#f0f0f0; border:none; width:36px; height:36px; border-radius:50%; cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; color:#555; transition:background .2s; }
+.modal-close:hover { background:#e0e0e0; }
+
+/* ── MODAL DE CONTEÚDO ── */
+.info-modal-header { text-align:center; margin-bottom:24px; }
+.info-modal-header .big-emoji { font-size:4rem; display:block; margin-bottom:10px; }
+.info-modal-header h2 { font-family:'Playfair Display',serif; font-size:1.8rem; color:var(--verde); margin-bottom:8px; }
+.info-modal-header p.subtitle { font-size:.9rem; color:#777; font-style:italic; }
+.info-section { margin-bottom:20px; }
+.info-section p { font-size:.97rem; color:#444; line-height:1.75; margin-bottom:12px; }
+.info-section strong { color:var(--verde); }
+.info-img { width:100%; border-radius:14px; object-fit:cover; height:200px; box-shadow:var(--sombra); margin-bottom:6px; transition:transform .3s; }
+.info-img:hover { transform:scale(1.02); }
+.img-cap { font-size:.76rem; color:#999; font-style:italic; margin-bottom:16px; }
+.tag-list { display:flex; flex-wrap:wrap; gap:10px; margin:16px 0; }
+.tag { background:var(--verde-bg); color:var(--verde); padding:7px 14px; border-radius:50px; font-size:.82rem; font-weight:700; }
+.tag.azul { background:var(--azul-bg); color:var(--azul); }
+.tag.amarelo { background:var(--amarelo-bg); color:#7b5800; }
+.highlight-box { background:linear-gradient(135deg,var(--verde-bg),var(--azul-bg)); border-left:4px solid var(--verde); border-radius:0 14px 14px 0; padding:18px 20px; margin:16px 0; }
+.highlight-box i { color:var(--verde); margin-bottom:6px; display:block; }
+.highlight-box p { font-style:italic; font-size:.97rem; color:var(--verde); font-weight:600; margin:0!important; }
+.benefit-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:14px 0; }
+.benefit-mini { background:var(--fundo); border-radius:14px; padding:16px; text-align:center; }
+.benefit-mini .bm-icon { font-size:2rem; margin-bottom:6px; }
+.benefit-mini h5 { font-size:.9rem; font-weight:800; color:var(--verde); margin-bottom:4px; }
+.benefit-mini p { font-size:.8rem; color:#666; line-height:1.4; }
+.action-list { display:flex; flex-direction:column; gap:12px; margin:14px 0; }
+.action-row { display:flex; align-items:flex-start; gap:14px; background:var(--fundo); padding:14px 16px; border-radius:14px; }
+.action-num { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:900; color:var(--verde-claro); line-height:1; flex-shrink:0; }
+.action-row h5 { font-weight:800; font-size:.9rem; margin-bottom:4px; color:var(--texto); }
+.action-row p { font-size:.82rem; color:#666; line-height:1.4; }
+.timeline-mini { display:flex; flex-direction:column; gap:16px; margin:14px 0; }
+.tl-item { display:flex; gap:14px; align-items:flex-start; background:var(--fundo); padding:16px; border-radius:14px; }
+.tl-dot { font-size:2rem; flex-shrink:0; }
+.tl-item h5 { font-weight:800; font-size:.9rem; color:var(--verde); margin-bottom:4px; }
+.tl-item p { font-size:.82rem; color:#555; line-height:1.4; }
+
+/* ── JOGO ── */
+.game-screen { display:block; }
+.game-screen.hidden { display:none; }
+.game-title-area { text-align:center; margin-bottom:24px; }
+.game-emoji { font-size:4rem; margin-bottom:12px; }
+.game-title-area h2 { font-family:'Playfair Display',serif; font-size:1.8rem; color:var(--verde); margin-bottom:10px; }
+.game-title-area p { font-size:.95rem; color:#555; line-height:1.6; }
+.score-display { display:flex; gap:16px; justify-content:center; margin-bottom:24px; flex-wrap:wrap; }
+.score-display span { background:var(--fundo); padding:8px 18px; border-radius:50px; font-size:.9rem; font-weight:700; }
+.btn-game { display:block; width:100%; background:linear-gradient(135deg,var(--verde),var(--azul)); color:#fff; border:none; padding:16px 28px; border-radius:14px; font-size:1rem; font-weight:800; cursor:pointer; font-family:'Nunito',sans-serif; transition:all .3s; letter-spacing:.5px; }
+.btn-game:hover { transform:scale(1.02); box-shadow:0 8px 24px rgba(45,106,79,.35); }
+.progress-bar-wrap { background:#e0e0e0; border-radius:50px; height:8px; margin-bottom:18px; overflow:hidden; }
+.progress-bar { height:100%; background:linear-gradient(90deg,var(--verde-claro),var(--azul-claro)); border-radius:50px; transition:width .6s ease; width:0%; }
+.question-number { font-size:.8rem; font-weight:700; color:#888; letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; }
+.question-image { font-size:4rem; margin:10px 0; }
+.question-text { font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--texto); margin-bottom:20px; line-height:1.4; }
+.choices { display:flex; flex-direction:column; gap:12px; }
+.choice-btn { background:var(--fundo); border:2px solid transparent; border-radius:14px; padding:14px 18px; font-size:.95rem; font-weight:700; cursor:pointer; text-align:left; font-family:'Nunito',sans-serif; transition:all .25s; color:var(--texto); }
+.choice-btn:hover { border-color:var(--verde-claro); background:var(--verde-bg); transform:translateX(4px); }
+.result-emoji { font-size:5rem; text-align:center; margin-bottom:14px; }
+#resultTitle { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--texto); margin-bottom:10px; }
+#resultText { font-size:.95rem; color:#555; line-height:1.6; margin-bottom:16px; }
+.result-impact { padding:14px 18px; border-radius:12px; font-weight:700; font-size:.9rem; margin-bottom:20px; }
+.result-impact.positive { background:var(--verde-bg); color:var(--verde); }
+.result-impact.negative { background:#fde2e2; color:#c0392b; }
+.end-emoji { font-size:5rem; text-align:center; }
+#endTitle { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--verde); margin:10px 0; }
+#endText { font-size:.95rem; color:#555; margin-bottom:18px; }
+.final-score { display:flex; gap:20px; justify-content:center; margin-bottom:16px; }
+.score-item { padding:18px 28px; border-radius:16px; text-align:center; font-family:'Playfair Display',serif; }
+.score-item span { font-size:2.5rem; font-weight:900; display:block; }
+.score-item small { font-size:.8rem; font-family:'Nunito',sans-serif; }
+.score-item.green { background:var(--verde-bg); color:var(--verde); }
+.score-item.gray { background:#f5f5f5; color:#777; }
+.end-message { padding:16px 20px; border-radius:14px; font-size:.95rem; font-weight:700; line-height:1.5; margin-bottom:20px; }
+
+/* ── FOOTER ── */
+.footer { background:linear-gradient(135deg,#1b4332,#1a3c52); color:#fff; padding:50px 20px; text-align:center; }
+.footer-logo { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:900; margin-bottom:10px; color:var(--amarelo); }
+.footer p { font-size:.9rem; opacity:.75; margin-bottom:16px; }
+.footer-icons { font-size:1.5rem; margin-bottom:12px; letter-spacing:8px; }
+.footer-small { font-size:.8rem; opacity:.5; }
+
+@media(max-width:640px){
+  .modal-box{padding:28px 18px;}
+  .menu-grid{grid-template-columns:1fr;}
+  .benefit-row{grid-template-columns:1fr;}
+  .final-score{flex-direction:column;align-items:center;}
+}
+</style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="header-overlay"></div>
-    <div class="leaf leaf1">🌿</div>
-    <div class="leaf leaf2">🍃</div>
-    <div class="leaf leaf3">🌱</div>
-    <div class="header-content">
-      <div class="logo-icon">🌾</div>
-      <h1 class="main-title">AGRO FORTE,<br><span>FUTURO SUSTENTÁVEL</span></h1>
-      <p class="slogan">equilíbrio entre produção e meio ambiente</p>
-      <div class="header-badges">
-        <span class="badge"><i class="fas fa-leaf"></i> Natureza</span>
-        <span class="badge"><i class="fas fa-tint"></i> Água</span>
-        <span class="badge"><i class="fas fa-seedling"></i> Solo</span>
-        <span class="badge"><i class="fas fa-sun"></i> Energia</span>
-      </div>
-    </div>
-    <div class="header-wave">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#f5f0e8"/></svg>
-    </div>
-  </header>
-
-  <!-- MENU CENTRAL -->
-  <section class="menu-section" id="menu">
-    <div class="section-label">EXPLORE OS TEMAS</div>
-    <h2 class="section-title">O que você quer descobrir?</h2>
-    <div class="menu-grid">
-
-      <div class="menu-card game-card" onclick="openGame()">
-        <div class="card-glow"></div>
-        <div class="card-icon">🎮</div>
-        <div class="card-badge-top">INTERATIVO</div>
-        <h3>Hora do<br>Mini Game!</h3>
-        <p>Faça escolhas e veja as consequências para o meio ambiente</p>
-        <div class="card-arrow"><i class="fas fa-play-circle"></i> Jogar agora</div>
-      </div>
-
-      <div class="menu-card" onclick="scrollTo('#agro-tech')">
-        <div class="card-icon">🚜</div>
-        <h3>Agro &<br>Tecnologia</h3>
-        <p>Como a inovação transforma o campo do futuro</p>
-        <div class="card-arrow"><i class="fas fa-arrow-right"></i> Ver mais</div>
-      </div>
-
-      <div class="menu-card" onclick="scrollTo('#meio-ambiente')">
-        <div class="card-icon">🌍</div>
-        <h3>Meio Ambiente<br>& Produção</h3>
-        <p>Por que produzir mais gastando menos recursos</p>
-        <div class="card-arrow"><i class="fas fa-arrow-right"></i> Ver mais</div>
-      </div>
-
-      <div class="menu-card" onclick="scrollTo('#beneficios')">
-        <div class="card-icon">🤝</div>
-        <h3>Agro + Natureza<br>Juntos!</h3>
-        <p>Os benefícios reais de um campo sustentável</p>
-        <div class="card-arrow"><i class="fas fa-arrow-right"></i> Ver mais</div>
-      </div>
-
-      <div class="menu-card" onclick="scrollTo('#futuro')">
-        <div class="card-icon">🌅</div>
-        <h3>O Futuro<br>do Campo</h3>
-        <p>Visão de um agronegócio verde e próspero</p>
-        <div class="card-arrow"><i class="fas fa-arrow-right"></i> Ver mais</div>
-      </div>
-
-      <div class="menu-card" onclick="scrollTo('#acoes')">
-        <div class="card-icon">✅</div>
-        <h3>O que Posso<br>Fazer?</h3>
-        <p>Atitudes concretas para um planeta melhor</p>
-        <div class="card-arrow"><i class="fas fa-arrow-right"></i> Ver mais</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- MODAL DO JOGO -->
-  <div class="modal-overlay" id="gameModal">
-    <div class="modal-box">
-      <button class="modal-close" onclick="closeGame()"><i class="fas fa-times"></i></button>
-
-      <!-- TELA: INTRO -->
-      <div class="game-screen" id="screen-intro">
-        <div class="game-title-area">
-          <div class="game-emoji">🎮</div>
-          <h2>Mini Game:<br>Fazenda do Futuro</h2>
-          <p>Você é o dono(a) de uma fazenda e vai enfrentar 3 situações reais. Suas escolhas moldam o futuro do planeta!</p>
-        </div>
-        <div class="score-display">
-          <span>🌱 Pontos Verdes: <strong id="greenScore">0</strong></span>
-          <span>🏭 Pontos Cinzas: <strong id="grayScore">0</strong></span>
-        </div>
-        <button class="btn-game" onclick="startGame()"><i class="fas fa-play"></i> Começar Aventura!</button>
-      </div>
-
-      <!-- TELA: PERGUNTA -->
-      <div class="game-screen hidden" id="screen-question">
-        <div class="progress-bar-wrap">
-          <div class="progress-bar" id="progressBar"></div>
-        </div>
-        <div class="question-number" id="questionNum">Situação 1 de 3</div>
-        <div class="question-image" id="questionEmoji">🌾</div>
-        <h3 class="question-text" id="questionText">Pergunta aqui</h3>
-        <div class="choices" id="choicesArea"></div>
-      </div>
-
-      <!-- TELA: CONSEQUÊNCIA -->
-      <div class="game-screen hidden" id="screen-result">
-        <div class="result-emoji" id="resultEmoji">🌿</div>
-        <h3 id="resultTitle">Resultado</h3>
-        <p id="resultText">Explicação aqui</p>
-        <div class="result-impact" id="resultImpact"></div>
-        <button class="btn-game" onclick="nextQuestion()">Próxima situação <i class="fas fa-arrow-right"></i></button>
-      </div>
-
-      <!-- TELA: FINAL -->
-      <div class="game-screen hidden" id="screen-end">
-        <div class="end-emoji" id="endEmoji">🌾</div>
-        <h2 id="endTitle">Fim da Jornada!</h2>
-        <p id="endText">Veja seu resultado</p>
-        <div class="final-score">
-          <div class="score-item green"><span id="finalGreen">0</span><small>🌱 Verdes</small></div>
-          <div class="score-item gray"><span id="finalGray">0</span><small>🏭 Cinzas</small></div>
-        </div>
-        <div class="end-message" id="endMessage"></div>
-        <button class="btn-game" onclick="restartGame()"><i class="fas fa-redo"></i> Jogar de Novo</button>
-      </div>
-
+<!-- HEADER -->
+<header class="header">
+  <div class="header-overlay"></div>
+  <div class="leaf leaf1">🌿</div>
+  <div class="leaf leaf2">🍃</div>
+  <div class="leaf leaf3">🌱</div>
+  <div class="header-content">
+    <div class="logo-icon">🌾</div>
+    <h1 class="main-title">AGRO FORTE,<br><span>FUTURO SUSTENTÁVEL</span></h1>
+    <p class="slogan">equilíbrio entre produção e meio ambiente</p>
+    <div class="header-badges">
+      <span class="badge"><i class="fas fa-leaf"></i> Natureza</span>
+      <span class="badge"><i class="fas fa-tint"></i> Água</span>
+      <span class="badge"><i class="fas fa-seedling"></i> Solo</span>
+      <span class="badge"><i class="fas fa-sun"></i> Energia</span>
     </div>
   </div>
+  <div class="header-wave">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#f5f0e8"/></svg>
+  </div>
+</header>
 
-  <!-- SEÇÃO: AGRO E TECNOLOGIA -->
-  <section class="content-section alt-bg" id="agro-tech">
-    <div class="container">
-      <div class="section-label">INOVAÇÃO NO CAMPO</div>
-      <h2 class="section-title">Agro & Tecnologia: o campo do futuro</h2>
-      <div class="content-grid">
-        <div class="content-text">
-          <p>O agronegócio brasileiro é um dos mais avançados do mundo. Com o uso de <strong>drones, inteligência artificial, sensores de solo e satélites</strong>, o produtor rural hoje consegue plantar mais, gastar menos água e preservar mais áreas verdes ao mesmo tempo.</p>
-          <p>A chamada <strong>Agricultura de Precisão</strong> usa dados em tempo real para saber exatamente onde plantar, irrigar e colher — reduzindo desperdício e aumentando a produtividade por hectare.</p>
-          <div class="tech-list">
-            <div class="tech-item"><i class="fas fa-helicopter"></i><span>Drones monitorando plantações</span></div>
-            <div class="tech-item"><i class="fas fa-satellite"></i><span>Satélites mapeando o solo</span></div>
-            <div class="tech-item"><i class="fas fa-brain"></i><span>IA prevendo pragas e clima</span></div>
-            <div class="tech-item"><i class="fas fa-tint"></i><span>Irrigação inteligente por sensor</span></div>
-          </div>
-        </div>
-        <div class="content-image">
-          <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&q=80" alt="Drone em plantação" loading="lazy"/>
-          <div class="img-caption">Drone monitorando lavoura com tecnologia de precisão</div>
-          <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=600&q=80" alt="Tecnologia agrícola" loading="lazy" style="margin-top:1rem"/>
-          <div class="img-caption">Sistemas automatizados de irrigação sustentável</div>
-        </div>
-      </div>
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="section-label">EXPLORE OS TEMAS</div>
+  <h2 class="section-title">O que você quer descobrir?</h2>
+  <div class="menu-grid">
+
+    <div class="menu-card game-card" onclick="openGame()">
+      <div class="card-glow"></div>
+      <div class="card-icon">🎮</div>
+      <div class="card-badge-top">INTERATIVO</div>
+      <h3>Hora do<br>Mini Game!</h3>
+      <p>Faça escolhas e veja as consequências para o meio ambiente</p>
+      <div class="card-arrow"><i class="fas fa-play-circle"></i> Jogar agora</div>
     </div>
-  </section>
 
-  <!-- SEÇÃO: MEIO AMBIENTE -->
-  <section class="content-section" id="meio-ambiente">
-    <div class="container">
-      <div class="section-label">NATUREZA & PRODUÇÃO</div>
-      <h2 class="section-title">Por que o Meio Ambiente é um aliado do Agro?</h2>
-      <div class="content-grid reverse">
-        <div class="content-image">
-          <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Floresta e campo" loading="lazy"/>
-          <div class="img-caption">Área de preservação ao lado de lavoura produtiva</div>
-          <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=600&q=80" alt="Rio em área rural" loading="lazy" style="margin-top:1rem"/>
-          <div class="img-caption">Rios limpos garantem irrigação natural para toda a região</div>
-        </div>
-        <div class="content-text">
-          <p>Floresta preservada <strong>regula o clima</strong>, mantém os rios cheios e o solo fértil. Um produtor rural que cuida da mata em volta de sua fazenda está, na prática, garantindo água para irrigar, chuva na época certa e proteção contra erosão.</p>
-          <p>Estudos mostram que fazendas com <strong>Reserva Legal bem mantida</strong> produzem mais a longo prazo, pois a biodiversidade ao redor controla pragas naturalmente, reduzindo o uso de agrotóxicos.</p>
-          <div class="highlight-box">
-            <i class="fas fa-quote-left"></i>
-            <p>"Quem cuida da floresta cuida da própria lavoura. A natureza é o maior seguro do agricultor."</p>
-          </div>
-        </div>
-      </div>
+    <div class="menu-card" onclick="openModal('modal-agro-tech')">
+      <div class="card-glow"></div>
+      <div class="card-icon">🚜</div>
+      <h3>Agro &amp;<br>Tecnologia</h3>
+      <p>Como a inovação transforma o campo do futuro</p>
+      <div class="card-arrow"><i class="fas fa-arrow-right"></i> Ver mais</div>
     </div>
-  </section>
 
-  <!-- SEÇÃO: BENEFÍCIOS -->
-  <section class="content-section alt-bg" id="beneficios">
-    <div class="container">
-      <div class="section-label">VANTAGENS REAIS</div>
-      <h2 class="section-title">Agro + Natureza = Ganho para todos</h2>
-      <div class="benefits-grid">
+    <div class="menu-card" onclick="openModal('modal-meio-ambiente')">
+      <div class="card-glow"></div>
+      <div class="card-icon">🌍</div>
+      <h3>Meio Ambiente<br>&amp; Produção</h3>
+      <p>Por que produzir mais gastando menos recursos</p>
+      <div class="card-arrow"><i class="fas fa-arrow-right"></i> Ver mais</div>
+    </div>
 
-        <div class="benefit-card">
-          <div class="benefit-icon" style="background:#e8f5e9">🌧️</div>
-          <h4>Chuvas Regulares</h4>
+    <div class="menu-card" onclick="openModal('modal-beneficios')">
+      <div class="card-glow"></div>
+      <div class="card-icon">🤝</div>
+      <h3>Agro + Natureza<br>Juntos!</h3>
+      <p>Os benefícios reais de um campo sustentável</p>
+      <div class="card-arrow"><i class="fas fa-arrow-right"></i> Ver mais</div>
+    </div>
+
+    <div class="menu-card" onclick="openModal('modal-futuro')">
+      <div class="card-glow"></div>
+      <div class="card-icon">🌅</div>
+      <h3>O Futuro<br>do Campo</h3>
+      <p>Visão de um agronegócio verde e próspero</p>
+      <div class="card-arrow"><i class="fas fa-arrow-right"></i> Ver mais</div>
+    </div>
+
+    <div class="menu-card" onclick="openModal('modal-acoes')">
+      <div class="card-glow"></div>
+      <div class="card-icon">✅</div>
+      <h3>O que Posso<br>Fazer?</h3>
+      <p>Atitudes concretas para um planeta melhor</p>
+      <div class="card-arrow"><i class="fas fa-arrow-right"></i> Ver mais</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MODAL: MINI GAME -->
+<div class="modal-overlay" id="gameModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeGame()"><i class="fas fa-times"></i></button>
+    <div class="game-screen" id="screen-intro">
+      <div class="game-title-area">
+        <div class="game-emoji">🎮</div>
+        <h2>Mini Game:<br>Fazenda do Futuro</h2>
+        <p>Você é o dono(a) de uma fazenda e vai enfrentar 3 situações reais. Suas escolhas moldam o futuro do planeta!</p>
+      </div>
+      <div class="score-display">
+        <span>🌱 Pontos Verdes: <strong id="greenScore">0</strong></span>
+        <span>🏭 Pontos Cinzas: <strong id="grayScore">0</strong></span>
+      </div>
+      <button class="btn-game" onclick="startGame()"><i class="fas fa-play"></i> Começar Aventura!</button>
+    </div>
+    <div class="game-screen hidden" id="screen-question">
+      <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+      <div class="question-number" id="questionNum">Situação 1 de 3</div>
+      <div class="question-image" id="questionEmoji">🌾</div>
+      <h3 class="question-text" id="questionText"></h3>
+      <div class="choices" id="choicesArea"></div>
+    </div>
+    <div class="game-screen hidden" id="screen-result">
+      <div class="result-emoji" id="resultEmoji">🌿</div>
+      <h3 id="resultTitle"></h3>
+      <p id="resultText"></p>
+      <div class="result-impact" id="resultImpact"></div>
+      <button class="btn-game" onclick="nextQuestion()">Próxima situação <i class="fas fa-arrow-right"></i></button>
+    </div>
+    <div class="game-screen hidden" id="screen-end">
+      <div class="end-emoji" id="endEmoji">🌾</div>
+      <h2 id="endTitle"></h2>
+      <p id="endText"></p>
+      <div class="final-score">
+        <div class="score-item green"><span id="finalGreen">0</span><small>🌱 Verdes</small></div>
+        <div class="score-item gray"><span id="finalGray">0</span><small>🏭 Cinzas</small></div>
+      </div>
+      <div class="end-message" id="endMessage"></div>
+      <button class="btn-game" onclick="restartGame()"><i class="fas fa-redo"></i> Jogar de Novo</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: AGRO & TECNOLOGIA -->
+<div class="modal-overlay" id="modal-agro-tech">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-agro-tech')"><i class="fas fa-times"></i></button>
+    <div class="info-modal-header">
+      <span class="big-emoji">🚜</span>
+      <h2>Agro &amp; Tecnologia</h2>
+      <p class="subtitle">INOVAÇÃO NO CAMPO</p>
+    </div>
+    <div class="info-section">
+      <img class="info-img" src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=700&q=80" alt="Drone em plantação"/>
+      <p class="img-cap">Drone monitorando lavoura com tecnologia de precisão</p>
+      <p>O agronegócio brasileiro é um dos mais avançados do mundo. Com o uso de <strong>drones, inteligência artificial, sensores de solo e satélites</strong>, o produtor rural hoje consegue plantar mais, gastar menos água e preservar mais áreas verdes ao mesmo tempo.</p>
+      <p>A chamada <strong>Agricultura de Precisão</strong> usa dados em tempo real para saber exatamente onde plantar, irrigar e colher — reduzindo desperdício e aumentando a produtividade por hectare.</p>
+      <div class="tag-list">
+        <span class="tag"><i class="fas fa-helicopter"></i> Drones</span>
+        <span class="tag azul"><i class="fas fa-satellite"></i> Satélites</span>
+        <span class="tag amarelo"><i class="fas fa-brain"></i> Inteligência Artificial</span>
+        <span class="tag azul"><i class="fas fa-tint"></i> Irrigação por Sensor</span>
+      </div>
+      <img class="info-img" src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=700&q=80" alt="Tecnologia agrícola"/>
+      <p class="img-cap">Sistemas automatizados de irrigação sustentável</p>
+      <p>Com a tecnologia certa, é possível <strong>produzir até 50% mais</strong> no mesmo espaço, consumindo menos água e sem desmatar. O futuro do agro é digital, sustentável e cada vez mais conectado com o meio ambiente.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: MEIO AMBIENTE & PRODUÇÃO -->
+<div class="modal-overlay" id="modal-meio-ambiente">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-meio-ambiente')"><i class="fas fa-times"></i></button>
+    <div class="info-modal-header">
+      <span class="big-emoji">🌍</span>
+      <h2>Meio Ambiente &amp; Produção</h2>
+      <p class="subtitle">NATUREZA &amp; PRODUÇÃO</p>
+    </div>
+    <div class="info-section">
+      <img class="info-img" src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=700&q=80" alt="Floresta e campo"/>
+      <p class="img-cap">Área de preservação ao lado de lavoura produtiva</p>
+      <p>Floresta preservada <strong>regula o clima</strong>, mantém os rios cheios e o solo fértil. Um produtor rural que cuida da mata em volta de sua fazenda está, na prática, garantindo água para irrigar, chuva na época certa e proteção contra erosão.</p>
+      <p>Estudos mostram que fazendas com <strong>Reserva Legal bem mantida</strong> produzem mais a longo prazo, pois a biodiversidade ao redor controla pragas naturalmente, reduzindo o uso de agrotóxicos.</p>
+      <div class="highlight-box">
+        <i class="fas fa-quote-left"></i>
+        <p>"Quem cuida da floresta cuida da própria lavoura. A natureza é o maior seguro do agricultor."</p>
+      </div>
+      <img class="info-img" src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=700&q=80" alt="Rio em área rural"/>
+      <p class="img-cap">Rios limpos garantem irrigação natural para toda a região</p>
+      <p>A manutenção das <strong>matas ciliares</strong> ao redor dos rios é fundamental: elas filtram a água, evitam o assoreamento e garantem que as nascentes continuem vivas mesmo nas secas mais severas.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: AGRO + NATUREZA JUNTOS -->
+<div class="modal-overlay" id="modal-beneficios">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-beneficios')"><i class="fas fa-times"></i></button>
+    <div class="info-modal-header">
+      <span class="big-emoji">🤝</span>
+      <h2>Agro + Natureza Juntos!</h2>
+      <p class="subtitle">VANTAGENS REAIS</p>
+    </div>
+    <div class="info-section">
+      <p>Quando o agronegócio e o meio ambiente caminham juntos, <strong>todos ganham</strong>: o produtor, o consumidor e o planeta. Veja os principais benefícios dessa parceria:</p>
+      <div class="benefit-row">
+        <div class="benefit-mini">
+          <div class="bm-icon">🌧️</div>
+          <h5>Chuvas Regulares</h5>
           <p>Florestas preservadas garantem ciclos de chuva equilibrados, essenciais para toda agricultura.</p>
-          <img src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?w=400&q=70" alt="Chuva no campo" loading="lazy"/>
         </div>
-
-        <div class="benefit-card">
-          <div class="benefit-icon" style="background:#e3f2fd">💧</div>
-          <h4>Água Limpa</h4>
+        <div class="benefit-mini">
+          <div class="bm-icon">💧</div>
+          <h5>Água Limpa</h5>
           <p>Matas ciliares protegem rios e nascentes, garantindo água de qualidade para irrigação e consumo.</p>
-          <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400&q=70" alt="Rio limpo" loading="lazy"/>
         </div>
-
-        <div class="benefit-card">
-          <div class="benefit-icon" style="background:#fff3e0">🌻</div>
-          <h4>Solo Fértil</h4>
+        <div class="benefit-mini">
+          <div class="bm-icon">🌻</div>
+          <h5>Solo Fértil</h5>
           <p>Práticas sustentáveis como plantio direto e compostagem mantêm o solo rico por gerações.</p>
-          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=70" alt="Solo fértil" loading="lazy"/>
         </div>
-
-        <div class="benefit-card">
-          <div class="benefit-icon" style="background:#f3e5f5">🐝</div>
-          <h4>Polinizadores</h4>
+        <div class="benefit-mini">
+          <div class="bm-icon">🐝</div>
+          <h5>Polinizadores</h5>
           <p>Abelhas e insetos saudáveis aumentam em até 30% a produtividade de diversas culturas.</p>
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=70" alt="Abelha em flor" loading="lazy"/>
         </div>
-
-        <div class="benefit-card">
-          <div class="benefit-icon" style="background:#e8f5e9">☀️</div>
-          <h4>Energia Solar</h4>
+        <div class="benefit-mini">
+          <div class="bm-icon">☀️</div>
+          <h5>Energia Solar</h5>
           <p>Fazendas com painéis solares reduzem custos e tornam a propriedade energeticamente autônoma.</p>
-          <img src="https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=400&q=70" alt="Energia solar no campo" loading="lazy"/>
         </div>
-
-        <div class="benefit-card">
-          <div class="benefit-icon" style="background:#e3f2fd">🌍</div>
-          <h4>Mercado Verde</h4>
+        <div class="benefit-mini">
+          <div class="bm-icon">🌍</div>
+          <h5>Mercado Verde</h5>
           <p>Produtos sustentáveis são cada vez mais valorizados no mercado nacional e internacional.</p>
-          <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&q=70" alt="Mercado sustentável" loading="lazy"/>
         </div>
-
       </div>
+      <img class="info-img" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=700&q=80" alt="Solo fértil"/>
+      <p class="img-cap">Solo saudável é a base de uma produção sustentável e duradoura</p>
+      <p>A <strong>biodiversidade</strong> próxima às lavouras age como um sistema natural de controle: pássaros comem insetos-praga, flores atraem polinizadores, e as raízes das árvores seguram o solo, evitando erosão e aumentando a retenção de água.</p>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- SEÇÃO: FUTURO -->
-  <section class="content-section" id="futuro">
-    <div class="container">
-      <div class="section-label">VISÃO DE AMANHÃ</div>
-      <h2 class="section-title">O Futuro do Campo: verde e próspero</h2>
-      <div class="future-timeline">
-
-        <div class="timeline-item">
-          <div class="timeline-dot">🌱</div>
-          <div class="timeline-content">
-            <h4>Agrofloresta</h4>
-            <p>Integração de árvores nativas com plantações — mais produtividade e biodiversidade no mesmo espaço.</p>
-            <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=500&q=70" alt="Agrofloresta" loading="lazy"/>
+<!-- MODAL: O FUTURO DO CAMPO -->
+<div class="modal-overlay" id="modal-futuro">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-futuro')"><i class="fas fa-times"></i></button>
+    <div class="info-modal-header">
+      <span class="big-emoji">🌅</span>
+      <h2>O Futuro do Campo</h2>
+      <p class="subtitle">VISÃO DE AMANHÃ</p>
+    </div>
+    <div class="info-section">
+      <p>O campo brasileiro está se reinventando. As fazendas do futuro combinam <strong>alta produtividade com responsabilidade ambiental</strong>, criando um modelo que pode alimentar o mundo sem destruir o planeta.</p>
+      <img class="info-img" src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=700&q=80" alt="Agrofloresta"/>
+      <p class="img-cap">Agrofloresta: árvores e plantações convivendo no mesmo espaço</p>
+      <div class="timeline-mini">
+        <div class="tl-item">
+          <div class="tl-dot">🌱</div>
+          <div>
+            <h5>Agrofloresta</h5>
+            <p>Integração de árvores nativas com plantações — mais produtividade e biodiversidade no mesmo espaço. Reduz erosão e aumenta a umidade do solo naturalmente.</p>
           </div>
         </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot">🤖</div>
-          <div class="timeline-content">
-            <h4>Robótica Agrícola</h4>
-            <p>Robôs colhem, plantam e monitoram com precisão milimétrica, reduzindo impacto no solo.</p>
-            <img src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=500&q=70" alt="Tecnologia agrícola" loading="lazy"/>
+        <div class="tl-item">
+          <div class="tl-dot">🤖</div>
+          <div>
+            <h5>Robótica Agrícola</h5>
+            <p>Robôs colhem, plantam e monitoram com precisão milimétrica, reduzindo impacto no solo e eliminando desperdício de insumos.</p>
           </div>
         </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot">💚</div>
-          <div class="timeline-content">
-            <h4>Carbono Zero</h4>
-            <p>Fazendas neutras em carbono ganham créditos que podem ser vendidos no mercado global.</p>
-            <img src="https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=500&q=70" alt="Carbono zero" loading="lazy"/>
+        <div class="tl-item">
+          <div class="tl-dot">💚</div>
+          <div>
+            <h5>Carbono Zero</h5>
+            <p>Fazendas neutras em carbono ganham créditos que podem ser vendidos no mercado global, gerando renda extra e incentivando a preservação.</p>
           </div>
         </div>
-
+        <div class="tl-item">
+          <div class="tl-dot">🌾</div>
+          <div>
+            <h5>Sementes Inteligentes</h5>
+            <p>Biotecnologia desenvolve variedades resistentes à seca e a pragas, sem depender de agrotóxicos e com menor uso de água.</p>
+          </div>
+        </div>
       </div>
+      <img class="info-img" src="https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=700&q=80" alt="Campo do futuro"/>
+      <p class="img-cap">O campo sustentável une tecnologia e natureza em harmonia</p>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- SEÇÃO: AÇÕES -->
-  <section class="content-section alt-bg" id="acoes">
-    <div class="container">
-      <div class="section-label">ATITUDE CONTA</div>
-      <h2 class="section-title">O que EU posso fazer?</h2>
-      <div class="actions-grid">
-        <div class="action-item">
+<!-- MODAL: O QUE POSSO FAZER? -->
+<div class="modal-overlay" id="modal-acoes">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-acoes')"><i class="fas fa-times"></i></button>
+    <div class="info-modal-header">
+      <span class="big-emoji">✅</span>
+      <h2>O que Posso Fazer?</h2>
+      <p class="subtitle">ATITUDE CONTA</p>
+    </div>
+    <div class="info-section">
+      <p>Sustentabilidade começa com <strong>pequenas escolhas diárias</strong>. Cada atitude consciente, seja no campo ou na cidade, contribui para um agronegócio mais verde e um planeta mais saudável.</p>
+      <img class="info-img" src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=700&q=80" alt="Campo sustentável"/>
+      <p class="img-cap">Cada pessoa tem um papel no futuro sustentável do agro</p>
+      <div class="action-list">
+        <div class="action-row">
           <span class="action-num">01</span>
-          <div>
-            <h4>Consuma produtos certificados</h4>
-            <p>Prefira alimentos com selos de origem sustentável e produção responsável.</p>
-          </div>
+          <div><h5>Consuma produtos certificados</h5><p>Prefira alimentos com selos de origem sustentável e produção responsável.</p></div>
         </div>
-        <div class="action-item">
+        <div class="action-row">
           <span class="action-num">02</span>
-          <div>
-            <h4>Reduza o desperdício de alimentos</h4>
-            <p>No Brasil, desperdiçamos 46 milhões de toneladas de comida por ano.</p>
-          </div>
+          <div><h5>Reduza o desperdício de alimentos</h5><p>No Brasil, desperdiçamos 46 milhões de toneladas de comida por ano — um enorme impacto ambiental evitável.</p></div>
         </div>
-        <div class="action-item">
+        <div class="action-row">
           <span class="action-num">03</span>
-          <div>
-            <h4>Valorize o produtor local</h4>
-            <p>Feiras livres e mercados locais reduzem o transporte e fortalecem o campo.</p>
-          </div>
+          <div><h5>Valorize o produtor local</h5><p>Feiras livres e mercados locais reduzem o transporte, fortalecem o campo e garantem alimentos mais frescos.</p></div>
         </div>
-        <div class="action-item">
+        <div class="action-row">
           <span class="action-num">04</span>
-          <div>
-            <h4>Aprenda sobre o campo</h4>
-            <p>Conhecimento é o primeiro passo para fazer escolhas conscientes no dia a dia.</p>
-          </div>
+          <div><h5>Aprenda sobre o campo</h5><p>Conhecimento é o primeiro passo para fazer escolhas conscientes no dia a dia. Compartilhe o que aprender!</p></div>
         </div>
-        <div class="action-item">
+        <div class="action-row">
           <span class="action-num">05</span>
-          <div>
-            <h4>Plante uma árvore</h4>
-            <p>Cada árvore plantada captura CO₂ e contribui para o ciclo das chuvas.</p>
-          </div>
+          <div><h5>Plante uma árvore</h5><p>Cada árvore plantada captura CO₂, contribui para o ciclo das chuvas e refresca o ambiente ao redor.</p></div>
         </div>
-        <div class="action-item">
+        <div class="action-row">
           <span class="action-num">06</span>
-          <div>
-            <h4>Compartilhe conhecimento</h4>
-            <p>Fale sobre sustentabilidade com amigos, família e redes sociais.</p>
-          </div>
+          <div><h5>Compartilhe conhecimento</h5><p>Fale sobre sustentabilidade com amigos, família e redes sociais. A mudança começa pela consciência coletiva.</p></div>
         </div>
       </div>
-      <div class="cta-area">
-        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=900&q=80" alt="Campo sustentável" loading="lazy"/>
-        <div class="cta-overlay">
-          <h3>🌾 Juntos pelo campo sustentável!</h3>
-          <p>O futuro do agro brasileiro está nas mãos de quem produz E de quem consome. Seja parte dessa mudança.</p>
-          <button class="btn-cta" onclick="scrollTo('#menu')">↑ Voltar ao início</button>
-        </div>
+      <div class="highlight-box">
+        <i class="fas fa-seedling"></i>
+        <p>"O futuro do agro brasileiro está nas mãos de quem produz E de quem consome. Seja parte dessa mudança!"</p>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-logo">🌾 AGRO FORTE</div>
-      <p>Equilíbrio entre produção e meio ambiente</p>
-      <div class="footer-icons">🌿 💧 🌱 ☀️ 🤝</div>
-      <p class="footer-small">Educação ambiental para um Brasil mais verde e produtivo</p>
-    </div>
-  </footer>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-logo">🌾 AGRO FORTE</div>
+    <p>Equilíbrio entre produção e meio ambiente</p>
+    <div class="footer-icons">🌿 💧 🌱 ☀️ 🤝</div>
+    <p class="footer-small">Educação ambiental para um Brasil mais verde e produtivo</p>
+  </div>
+</footer>
 
-  <script src="script.js"></script>
+<script>
+/* ── MODAIS GENÉRICOS ── */
+function openModal(id) {
+  document.getElementById(id).classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('.modal-overlay').forEach(function(ov) {
+  ov.addEventListener('click', function(e) {
+    if (e.target === ov) { ov.classList.remove('active'); document.body.style.overflow = ''; }
+  });
+});
+
+/* ── MINI GAME ── */
+var questions = [
+  { emoji:"💧", text:"Sua fazenda precisa de irrigação. Qual método você escolhe?",
+    choices:[
+      { text:"🌱 Instalo sensores de umidade e irrigação por gotejamento", isGreen:true,  title:"Escolha Sustentável! 🌿", result:"Os sensores de umidade evitam o desperdício e a irrigação por gotejamento entrega água diretamente às raízes, economizando até 60% de água. Sua plantação cresce mais saudável e os rios da região ficam preservados.", impact:"✅ +1 Ponto Verde | Economia de 60% de água | Rio e solo protegidos", isPositive:true },
+      { text:"🚿 Uso aspersores 24h por dia sem controle",                  isGreen:false, title:"Consequência Negativa! 🏭", result:"O uso excessivo de aspersores sem controle desperdiça grandes quantidades de água, contribui para o rebaixamento do lençol freático e pode afetar rios e nascentes próximos. O solo sofre danos duradouros.", impact:"⚠️ +1 Ponto Cinza | Solo erodido | Nascentes comprometidas", isPositive:false }
+    ]
+  },
+  { emoji:"🌳", text:"Uma área da sua fazenda tem mata nativa. O que você faz?",
+    choices:[
+      { text:"🌿 Preservo a mata como Reserva Legal e área de recarga hídrica", isGreen:true,  title:"Decisão Sábia! 🌲", result:"A mata preservada regula o clima local, mantém nascentes ativas, atrai polinizadores e protege o solo da erosão. Você ainda pode receber créditos de carbono e está em conformidade com o Código Florestal.", impact:"✅ +1 Ponto Verde | Créditos de carbono | Polinizadores preservados", isPositive:true },
+      { text:"🪓 Derrubro para ampliar a área plantada",                     isGreen:false, title:"Dano Ambiental! ⚠️", result:"O desmatamento elimina nascentes, aumenta a temperatura local em até 3°C e resulta em multas e embargos. Sem a mata, o solo fica exposto à erosão e a produtividade cai nos anos seguintes.", impact:"⚠️ +1 Ponto Cinza | Multa ambiental | Perda de polinizadores", isPositive:false }
+    ]
+  },
+  { emoji:"⚡", text:"Sua fazenda consome muita energia elétrica. O que você decide?",
+    choices:[
+      { text:"☀️ Instalo painéis solares e reaproveito resíduos para biogás", isGreen:true,  title:"Inovação Sustentável! 🌟", result:"A energia solar reduz a conta em até 90% e o excesso pode ser vendido à rede. O biogás dos resíduos gera energia limpa e o restante vira biofertilizante. Sua fazenda se torna autossuficiente e gera renda extra.", impact:"✅ +1 Ponto Verde | Economia de 90% na energia | Renda extra com biogás", isPositive:true },
+      { text:"🔥 Queimo restos de colheita e compro energia da rede",          isGreen:false, title:"Impacto Negativo! 💨", result:"A queima libera CO₂ e partículas tóxicas, contribui para o efeito estufa e prejudica a saúde dos trabalhadores rurais. Os nutrientes do solo são perdidos, reduzindo a fertilidade a longo prazo.", impact:"⚠️ +1 Ponto Cinza | Emissão de CO₂ | Solo empobrecido", isPositive:false }
+    ]
+  }
+];
+
+var currentQuestion = 0, greenScore = 0, grayScore = 0;
+
+function openGame() {
+  document.getElementById('gameModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  currentQuestion = 0; greenScore = 0; grayScore = 0;
+  updateScoreDisplay();
+  showScreen('screen-intro');
+}
+function closeGame() {
+  document.getElementById('gameModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function showScreen(id) {
+  document.querySelectorAll('.game-screen').forEach(function(s){ s.classList.add('hidden'); });
+  document.getElementById(id).classList.remove('hidden');
+}
+function updateScoreDisplay() {
+  document.getElementById('greenScore').textContent = greenScore;
+  document.getElementById('grayScore').textContent = grayScore;
+}
+function startGame() { currentQuestion = 0; showQuestion(); }
+function showQuestion() {
+  if (currentQuestion >= questions.length) { showEnd(); return; }
+  var q = questions[currentQuestion];
+  document.getElementById('progressBar').style.width = ((currentQuestion / questions.length) * 100) + '%';
+  document.getElementById('questionNum').textContent = 'Situação ' + (currentQuestion + 1) + ' de ' + questions.length;
+  document.getElementById('questionEmoji').textContent = q.emoji;
+  document.getElementById('questionText').textContent = q.text;
+  var area = document.getElementById('choicesArea');
+  area.innerHTML = '';
+  q.choices.forEach(function(c) {
+    var btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = c.text;
+    btn.onclick = function() { selectChoice(c); };
+    area.appendChild(btn);
+  });
+  showScreen('screen-question');
+}
+function selectChoice(c) {
+  if (c.isGreen) { greenScore++; } else { grayScore++; }
+  updateScoreDisplay();
+  document.getElementById('resultEmoji').textContent = c.isGreen ? '🌿' : '⚠️';
+  document.getElementById('resultTitle').textContent = c.title;
+  document.getElementById('resultText').textContent = c.result;
+  var imp = document.getElementById('resultImpact');
+  imp.textContent = c.impact;
+  imp.className = 'result-impact ' + (c.isPositive ? 'positive' : 'negative');
+  showScreen('screen-result');
+}
+function nextQuestion() {
+  currentQuestion++;
+  if (currentQuestion >= questions.length) { showEnd(); } else { showQuestion(); }
+}
+function showEnd() {
+  document.getElementById('progressBar').style.width = '100%';
+  document.getElementById('finalGreen').textContent = greenScore;
+  document.getElementById('finalGray').textContent = grayScore;
+  var emoji, title, msg;
+  if (greenScore === 3) { emoji='🌾🏆🌿'; title='Agricultor Sustentável!'; msg='🌟 Parabéns! Você fez todas as escolhas certas! Sua fazenda está no caminho certo para um futuro próspero e sustentável. Com práticas como essas, o agronegócio brasileiro pode ser referência mundial!'; }
+  else if (greenScore === 2) { emoji='🌱👍'; title='No Caminho Certo!'; msg='✅ Muito bom! Você tomou boas decisões na maioria das vezes. Pequenos ajustes ainda podem melhorar o impacto ambiental da sua fazenda. Cada escolha sustentável conta!'; }
+  else if (greenScore === 1) { emoji='🌻⚠️'; title='Ainda Pode Melhorar!'; msg='⚠️ Você tem boas intenções mas há muito a aprender! O equilíbrio entre produção e natureza é o caminho para uma fazenda mais lucrativa e duradoura.'; }
+  else { emoji='🏭😟'; title='Hora de Rever os Conceitos!'; msg='🚨 Suas escolhas causaram um grande impacto negativo no meio ambiente! Aprenda mais sobre sustentabilidade e tente novamente — o planeta agradece!'; }
+  document.getElementById('endEmoji').textContent = emoji;
+  document.getElementById('endTitle').textContent = title;
+  document.getElementById('endText').textContent = 'Você fez ' + greenScore + ' de 3 escolhas sustentáveis.';
+  document.getElementById('endMessage').textContent = msg;
+  var m = document.getElementById('endMessage');
+  m.style.background = greenScore >= 2 ? '#d8f3dc' : (greenScore === 1 ? '#fff3cd' : '#fde2e2');
+  m.style.color = greenScore >= 2 ? '#1b4332' : (greenScore === 1 ? '#7b4f00' : '#7b1515');
+  m.style.borderRadius = '14px'; m.style.padding = '16px 20px';
+  showScreen('screen-end');
+}
+function restartGame() {
+  currentQuestion = 0; greenScore = 0; grayScore = 0;
+  updateScoreDisplay(); showScreen('screen-intro');
+}
+
+/* ── ANIMAÇÕES ── */
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+  });
+}, { threshold: 0.1 });
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.menu-card').forEach(function(el, i) {
+    el.style.opacity = '0'; el.style.transform = 'translateY(28px)';
+    el.style.transition = 'opacity .5s ease ' + (i*.1) + 's, transform .5s ease ' + (i*.1) + 's';
+    obs.observe(el);
+  });
+});
+</script>
 </body>
 </html>
